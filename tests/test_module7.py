@@ -1,6 +1,7 @@
-import pytest
-import sys
 import json
+import sys
+
+import pytest
 
 from jobs import app
 from .utils import *

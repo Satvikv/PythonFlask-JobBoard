@@ -1,12 +1,11 @@
 import ast
+import collections
 import inspect
 import json
 import os
-import collections
 
 from bs4 import BeautifulSoup
 from jinja2 import Environment, PackageLoader, exceptions, meta, nodes
-
 
 env = Environment(loader=PackageLoader("jobs", "templates"))
 

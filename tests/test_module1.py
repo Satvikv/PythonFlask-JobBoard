@@ -1,8 +1,9 @@
-import pytest
 import inspect
 
-from .utils import *
+import pytest
+
 from jobs import app
+from .utils import *
 
 
 @pytest.mark.test_app_import_flask_module1
