@@ -15,8 +15,9 @@ def open_connection():
 
 
 def execute_sql(sql, values=(), commit=False, single=False):
+    print (values, sql)
     connection = open_connection()
-    cursor = connection.execute(sql, values)
+    cursor = connection.execute(sql, [values])
     if commit:
         results = connection.commit()
     else:
@@ -43,12 +44,19 @@ def jobs():
 
 @app.route('/job/<job_id>')
 def job(job_id):
-    print(job_id)
+    #print("Job id passed is ", job_id)
     job_res = execute_sql(
-        'SELECT job.id, job.title, job.description, job.salary, employer.id as employer_id, employer.name as '
-        'employer_name FROM job JOIN employer ON employer.id = job.employer_id WHERE job.id= ?',
-        values=[job_id],
-        single=True
+        """
+        SELECT job.id, job.title, job.description, job.salary, employer.id as employer_id, employer.name as employer_name FROM
+        job
+        JOIN
+        employer
+        ON
+        employer.id = job.employer_id
+        WHERE
+        job.id = ?
+        """,
+        job_id, single=True
     )
     return render_template('job.html', job=job_res)
 

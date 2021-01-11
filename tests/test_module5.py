@@ -75,6 +75,7 @@ def test_app_job_route_data_module5():
 
     execute_sql = "execute_sql:SELECT job.id, job.title, job.description, job.salary, employer.id as employer_id, employer.name as employer_name FROM job JOIN employer ON employer.id = job.employer_id WHERE job.id = ?:job_id:single:True"
     result = [item for item in get_functions(app.job) if item.startswith(execute_sql)]
+    print(result)
     result_len = len(result) == 1
     assert result_len, "`execute_sql` has not been called or has the wrong parameters."
 
